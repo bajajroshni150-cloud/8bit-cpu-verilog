@@ -17,7 +17,8 @@ All modules are written in Verilog, simulated using Icarus Verilog via EDA Playg
 
 - [x] ALU design (Add, Sub, AND, OR via case statement)
 - [x] ALU testbench (5 test cases: Add, Sub, AND, OR, and one overflow case)
-- [ ] Register File
+- [x] Register File
+- [x]  Register File testbench (write, read, and write-disabled tests)
 - [ ] Instruction Memory
 - [ ] Control Unit
 - [ ] Program Counter
@@ -38,6 +39,15 @@ The ALU takes two 8-bit operands and a 2-bit select signal, and performs one of 
 | 11   | OR        |
 
 Carry-out (`cout`) is generated for Add/Sub using a concatenation trick (`{cout, result} = a + b`), which captures the 9th bit of the 8-bit addition as the carry. For AND/OR, `cout` is fixed to 0 since there's no overflow concept for bitwise operations.
+## Register File Details
+
+The register file contains four 8-bit registers, addressed using a 2-bit address.
+
+* Storage: 4 registers, each 8 bits wide.
+* Write operation: Synchronous write on the rising edge of the clock when write-enable (we) is high.
+* Read operation: Two asynchronous read ports allow two registers to be read simultaneously.
+* Verification: Tested register writes, reads, and write-disabled behavior using an Icarus Verilog testbench.
+* Status: Simulation tests passed.
 
 ## Tools Used
 
